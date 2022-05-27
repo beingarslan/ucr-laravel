@@ -1,5 +1,3 @@
-
-
 @include('layouts.header')
 
 

@@ -25,44 +25,44 @@
             <a class="nav-link" href="rental.php">Computers for Rent</a>
           </li>
           @auth
-            <li class="nav-item">
-              <a class="nav-link" href="account.php">Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="return.php">Return</a>
-            </li>
-            @if(Auth::user()->privillege=="web manager" || Auth::user()->privillege=="staff")
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown07XL" data-bs-toggle="dropdown" aria-expanded="false">Administration</a>
-                <ul class="dropdown-menu" aria-labelledby="dropdown07XL">
-                    <li><a class="dropdown-item" href="manager-dashboard.php">Manager Dashboard</a></li>
-                  <li><a class="dropdown-item" href="master-computer-list.php">Master Computer List</a></li>
-                  <li><a class="dropdown-item" href="manage-return.php">Manage Return</a></li>
-                  <li><a class="dropdown-item" href="user-management.php">User Management</a></li>
-                </ul>
-              </li>
-            @endif
+          <li class="nav-item">
+            <a class="nav-link" href="account.php">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="return.php">Return</a>
+          </li>
+          @if(Auth::user()->privillege=="web manager" || Auth::user()->privillege=="staff")
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown07XL" data-bs-toggle="dropdown" aria-expanded="false">Administration</a>
+            <ul class="dropdown-menu" aria-labelledby="dropdown07XL">
+              <li><a class="dropdown-item" href="manager-dashboard.php">Manager Dashboard</a></li>
+              <li><a class="dropdown-item" href="/computer">Master Computer List</a></li>
+              <li><a class="dropdown-item" href="manage-return.php">Manage Return</a></li>
+              <li><a class="dropdown-item" href="user-management.php">User Management</a></li>
+            </ul>
+          </li>
+          @endif
         </ul>
         <!-- logout -->
-        <form  action="{{ route('logout') }}" method="POST" class="form-inline my-2 my-md-0">
-        
+        <form action="{{ route('logout') }}" method="POST" class="form-inline my-2 my-md-0">
+
           @csrf
           <button type="submit" class="btn btn-outline-success my-2 my-sm-0">
-          {{ __('Logout') }}
-        </button> 
-       </form>
-         @endauth
+            {{ __('Logout') }}
+          </button>
+        </form>
+        @endauth
       </div>
-        <div class="float-right">
-        
-            @guest
-            <a href="{{ route('register') }}">
-              <input class="btn btn-primary" type="button" value="Register">
-            </a>
-            <input class="btn btn-warning" type="button" value="Login" data-bs-toggle="modal" data-bs-target="#modalSignin">
-            @endguest
-            </div>
+      <div class="float-right">
+
+        @guest
+        <a href="{{ route('register') }}">
+          <input class="btn btn-primary" type="button" value="Register">
+        </a>
+        <input class="btn btn-warning" type="button" value="Login" data-bs-toggle="modal" data-bs-target="#modalSignin">
+        @endguest
       </div>
+    </div>
     </div>
   </nav>
   <div class="modal fade" tabindex="-1" role="dialog" id="modalSignin" aria-labelledby="modalSignin" aria-hidden="true">
@@ -75,64 +75,64 @@
         </div>
 
         <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+          <form method="POST" action="{{ route('login') }}">
+            @csrf
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+            <div class="row mb-3">
+              <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+              <div class="col-md-6">
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                @error('email')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+              </div>
+            </div>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+            <div class="row mb-3">
+              <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+              <div class="col-md-6">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                @error('password')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+              </div>
+            </div>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+            <div class="row mb-3">
+              <div class="col-md-6 offset-md-4">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+                  <label class="form-check-label" for="remember">
+                    {{ __('Remember Me') }}
+                  </label>
                 </div>
+              </div>
+            </div>
+
+            <div class="row mb-0">
+              <div class="col-md-8 offset-md-4">
+                <button type="submit" class="btn btn-primary">
+                  {{ __('Login') }}
+                </button>
+
+                @if (Route::has('password.request'))
+                <a class="btn btn-link" href="{{ route('password.request') }}">
+                  {{ __('Forgot Your Password?') }}
+                </a>
+                @endif
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
